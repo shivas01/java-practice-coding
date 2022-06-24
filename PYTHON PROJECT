@@ -1,0 +1,65 @@
+from statistics import mean as m
+admins={'SHIVA':'password1','CHEEKU':'password2'}
+studentDict={'vikrant':[90,98,95],
+             'arjun':[88,85,87],
+             'shiva':[95,85,89]}
+def enterGrades():
+    nameToEnter=input('Student Name: ')
+    gradeToEnter=input('Grade: ')
+    if nameToEnter in studentDict:
+        print('Adding Grade....')
+        studentDict[nameToEnter].append(float(gradeToEnter))
+    else:
+        print('Student does not exist .')
+    print(studentDict)
+
+def removeStudent():
+    nameToRemove=input('What student to remove?: ')
+    if nameToRemove in studentDict:
+        print('remove student...')
+        del studentDict[nameToRemove]
+
+    print(studentDict)
+
+def studentAVGs():
+    for eachStudent in studentDict:
+        gradeList=studentDict[eachStudent]
+        avgGrade=m(gradeList)
+
+        print(eachStudent,'has an average grade of : ',avgGrade)
+
+def main():
+    print("""
+    welcome to Grade Central
+    
+    [1]-enter Grades
+    [2]-Remove Student
+    [3]-Student Average Grades
+    [4]-Exit
+     """)
+    action=input('What would you like to do today? (enter a number: )')
+
+    if action=='1':
+        enterGrades()
+    elif action=='2':
+        removeStudent()
+    elif action=='3':
+        studentAVGs()
+    elif action=='4':
+        exit()
+    else:
+        print('no valid choice was given,try again')
+
+login=input('Username: ')
+passw=input('Password:')
+
+if login in admins:
+    if admins[login]==passw:
+        print('Welcome',login)
+        while True:
+            main()
+    else:
+        print('Invalid Password, will detonate in 5 sec!')
+else:
+    print('Invalid user name, calling the POLICE to report this')
+
